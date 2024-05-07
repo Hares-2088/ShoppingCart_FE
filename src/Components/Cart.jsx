@@ -1,46 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Cart from './Cart';
 
-const Cart = ({ cartItems, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
-    const handleEmptyCart = () => onEmptyCart();
+const CartPage = () => {
+    // const [cartItems, setCartItems] = useState([]);
 
-    const renderEmptyMessage = () => (
-        <p>Your cart is empty.</p>
-    );
+    // useEffect(() => {
+    //     // Fetch cart items from the backend
+    //     fetchCartItems();
+    // }, []);
 
-    const renderCart = () => (
-        <div>
-            {cartItems.map(item => (
-                <div key={item.id} style={{ marginBottom: '20px' }}>
-                    <h4>{item.name}</h4>
-                    <div>
-                        <img src={item.image} alt={item.name} style={{ width: '90px', height: '90px' }} />
-                    </div>
-                    <div>
-                        <button onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}>-</button>
-                        <span>{item.quantity}</span>
-                        <button onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}>+</button>
-                    </div>
-                    <div>${item.price * item.quantity}</div>
-                    <button onClick={() => onRemoveFromCart(item.id)}>Remove</button>
-                </div>
-            ))}
-            <div>
-                <h3>Total: ${calculateTotal()}</h3>
-                <button onClick={handleEmptyCart}>Empty Cart</button>
-            </div>
-        </div>
-    );
+    // const fetchCartItems = async () => {
 
-    const calculateTotal = () => {
-        return cartItems.reduce((acc, currentItem) => acc + currentItem.price * currentItem.quantity, 0).toFixed(2);
-    };
+    // };
+
+    // const handleUpdateCartQty = (productId, newQuantity) => {
+    //     // Update cart item quantity
+    // };
+
+    // const handleRemoveFromCart = (productId) => {
+    //     // Remove item from cart
+    // };
+
+    // const handleEmptyCart = () => {
+    //     // Empty the cart
+    // };
 
     return (
         <div>
-            <h2>Your Shopping Cart</h2>
-            {cartItems.length === 0 ? renderEmptyMessage() : renderCart()}
+            <h1>My Items</h1>
+            {/* <Cart
+                cartItems={cartItems}
+                onUpdateCartQty={handleUpdateCartQty}
+                onRemoveFromCart={handleRemoveFromCart}
+                onEmptyCart={handleEmptyCart}
+            /> */}
         </div>
     );
 }
 
-export default Cart;
+export default CartPage;
+
+

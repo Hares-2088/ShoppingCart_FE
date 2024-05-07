@@ -9,16 +9,14 @@ const ProductListPage = () => {
     const name = urlParams.get('name');
     const email = urlParams.get('email');
 
-
-
     useEffect(() => {
-        // Fetch products from backend and set state
+        // Fetch products from the server
         // Example: fetchProducts();
-        // setProducts(placeholderProducts);
-        // setFilteredProducts(placeholderProducts);
+        // setProducts(responseData);
     }, []);
 
     useEffect(() => {
+        // Filter products based on search term
         const filtered = products.filter(product =>
             product.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
@@ -26,31 +24,29 @@ const ProductListPage = () => {
     }, [products, searchTerm]);
 
     return (
-        <div>
-            <h1>Product List</h1>
-            <input
-                type="text"
-                placeholder="Search by name..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div className="container mt-4">
-                <div className="row">
-                    {filteredProducts.map(product => (
-                        <div key={product.id} className="col-sm-12 col-md-6 col-lg-4 mb-3">
-                            <ProductCard product={product} />
-                        </div>
-                    ))}
+        <div className="container mt-5">
+            <h1 className="text-center mb-4">Product List</h1>
+            <div className="row justify-content-center">
+                <div className="col-lg-6">
+                    <input
+                        type="text"
+                        className="form-control mb-3"
+                        placeholder="Search by name..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                 </div>
             </div>
-
-            <div>
-                <h1>Welcome to the Main Page</h1>
-                <p>Hello, {name}!</p>
-                <p>Email: {email}</p>
+            <div className="row">
+                {filteredProducts.map(product => (
+                    <div key={product.id} className="col-sm-12 col-md-6 col-lg-4 mb-3">
+                        <ProductCard product={product} />
+                    </div>
+                ))}
             </div>
         </div>
     );
 }
 
 export default ProductListPage;
+
