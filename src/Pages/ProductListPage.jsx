@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import ProductCard from '../Components/ProductCard';
+import axios from 'axios'; // Import axios library
+import ProductCard from './ProductCard';
 
 const ProductListPage = () => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name');
-    const email = urlParams.get('email');
+    const [productId, setProductId] = useState('');
 
     useEffect(() => {
-        // Fetch products from the server
-        // Example: fetchProducts();
-        // setProducts(responseData);
+        // Fetch products from the server when the component mounts
+        fetchProducts();
     }, []);
 
     useEffect(() => {
@@ -22,6 +20,42 @@ const ProductListPage = () => {
         );
         setFilteredProducts(filtered);
     }, [products, searchTerm]);
+
+    // Function to fetch products from the server
+    const fetchProducts = async () => {
+        try {
+            // Make GET request to fetch all items
+            const response = await axios.get('http://localhost:8001/api/ext/getItems');
+            // Set the fetched products in state
+            setProducts(response.data);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+
+    // Function to handle adding an item to the cart
+    const handleAddToCart = async (item) => {
+        try {
+            // Retrieve user information from session storage
+            const userString = sessionStorage.getItem("user");
+            if (!userString) {
+                console.error('User information not found in session storage');
+                return;
+            }
+            const user = JSON.parse(userString);
+
+            // Make POST request to add item to cart
+            await axios.post('http://localhost:8001/api/ext/add-to-cart', {
+                user_id: user.id,
+                item_id: item.id,
+                quantity: 1, // You can adjust this if needed
+            });
+
+            console.log('Item added to cart successfully');
+        } catch (error) {
+            console.error('Error adding item to cart:', error);
+        }
+    };
 
     return (
         <div className="container mt-5">
@@ -38,9 +72,9 @@ const ProductListPage = () => {
                 </div>
             </div>
             <div className="row">
-                {filteredProducts.map(product => (
-                    <div key={product.id} className="col-sm-12 col-md-6 col-lg-4 mb-3">
-                        <ProductCard product={product} />
+                {filteredProducts.map(item => (
+                    <div key={item.id} className="col-sm-12 col-md-6 col-lg-4 mb-3">
+                        <ProductCard product={item} handleAddToCart={handleAddToCart} />
                     </div>
                 ))}
             </div>
@@ -49,4 +83,3 @@ const ProductListPage = () => {
 }
 
 export default ProductListPage;
-

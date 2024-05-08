@@ -43,3 +43,6 @@ body{
 .bg-custom {
   background-color: #d6d1d1;
 }
+.product-card {
+  height: 100%; /* Set a fixed height for the card */
+}
