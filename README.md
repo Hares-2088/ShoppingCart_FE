@@ -12,12 +12,20 @@ To set up the React application after cloning this repository, follow these step
 
    ```bash
    git clone [repository-url]
-cd [project-directory]
-npm install
+   
+2. **Navigate to the Project Directory
+   ```bash
+   cd [project-directory]
+
+3. **Install Dependencies:**
+   ```bash
+   npm install
+
+4. **Configure Environment Variables:**
 
 Create a .env file in the root of the project.
-Add the necessary environment variables for the API endpoint and other configuration settings:
-REACT_APP_API_URL=http://localhost:8000/api
 
-npm start
+Add the necessary environment variables for the API endpoint and other configuration settings:
+   ```env
+   REACT_APP_API_URL=http://localhost:8000/api
 
