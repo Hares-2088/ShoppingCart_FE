@@ -58,3 +58,11 @@ Once your setup is complete, you can access the application in your browser at *
 
 Feel free to explore the code and contribute to the project!
 
+##The Logging page
+![image](https://github.com/user-attachments/assets/d22bb466-8b94-4298-adc9-32dcee80a8b1)
+
+##The main page after logging with google
+![image](https://github.com/user-attachments/assets/e6f9e9b4-1074-4ade-abe4-bb2ac66a4f3d)
+
+
+
