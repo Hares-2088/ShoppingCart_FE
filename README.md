@@ -5,6 +5,9 @@ This repository contains the frontend application developed using **React**, des
 > **⚠️ Note:**  
 > This repository includes only the frontend code. Ensure that you have the corresponding Laravel backend set up and running.
 
+> **🔗 Backend Repository:** [ShoppingCart Backend](https://github.com/Hares-2088/ShoppingCart_BE)
+
+
 ## 🚀 Configuration Steps
 
 To set up the React application after cloning this repository, follow these steps:
